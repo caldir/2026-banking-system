@@ -126,8 +126,7 @@ class SavingsAccount(BankAccount):
         self._balance -= amount
 
     def apply_monthly_interest(self):
-        if self.status == AccountStatus.FROZEN:
-            raise AccountFrozenError('Account frozen!')
+        self._check_active()
 
         interest = self._balance * self.monthly_interest_rate
         self._balance += interest
