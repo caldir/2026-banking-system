@@ -114,3 +114,13 @@ class SavingsAccount(BankAccount):
 
         self.min_balance = Decimal(min_balance)
         self.monthly_interest_rate = Decimal(monthly_interest_rate)
+
+    def withdraw(self, amount):
+        amount = Decimal(amount)
+        self._check_active()
+        self._validate_amount(amount)
+        
+        if self._balance - amount < self.min_balance:
+            raise InsufficientFundsError('Cannot go below minimum balance')
+        
+        self._balance -= amount

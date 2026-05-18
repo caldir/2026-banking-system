@@ -12,9 +12,12 @@ from domain.accounts import SavingsAccount
 
 print('Banking system started')
 
-savings = SavingsAccount(owner_id="client_2", balance=5000)
-print(savings)
-print(savings.balance)
-print(savings.min_balance)
-print(savings.monthly_interest_rate)
-print(savings.get_account_info())
+savings = SavingsAccount(owner_id="client_2", balance=5000, min_balance=1000)
+
+savings.withdraw(3000)
+print(savings.balance)  # должно быть 2000
+
+try:
+    savings.withdraw(1500)
+except InsufficientFundsError as error:
+    print("SavingsAccount limit caught:", error)
