@@ -42,8 +42,13 @@ class AbstractAccount(ABC):
 class BankAccount(AbstractAccount):
 
     def __str__(self):
-        return self.__class__.__name__,'| Owner:',self.owner_id,'| Account:',
-                self.account_id,'| Status:',self.status.value,'| Balance:', str(self._balance)
+        return (
+                f"{self.__class__.__name__} | "
+                f"Owner: {self.owner_id} | "
+                f"Account:' ****{self.account_id[-4:]} | "
+                f"Status: {self.status.value} | "
+                f"Balance: {str(self._balance)} {self.currency.value}"
+        )
 
     def deposit(self, amount):
         amount = Decimal(amount)
@@ -55,7 +60,7 @@ class BankAccount(AbstractAccount):
         amount = Decimal(amount)
         self._check_active()
         self._validate_amount(amount)
-        self._validate_balance(amount)
+        self._check_sufficient_funds(amount)
         self._balance -= amount
 
     def get_account_info(self):
