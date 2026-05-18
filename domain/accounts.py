@@ -41,6 +41,10 @@ class AbstractAccount(ABC):
 
 class BankAccount(AbstractAccount):
 
+    def __str__(self):
+        return self.__class__.__name__,'| Owner:',self.owner_id,'| Account:',
+                self.account_id,'| Status:',self.status.value,'| Balance:', str(self._balance)
+
     def deposit(self, amount):
         amount = Decimal(amount)
         self._check_active()
@@ -67,10 +71,10 @@ class BankAccount(AbstractAccount):
         if amount <= 0:
             raise InvalidOperationError("Amount must be greater than zero")
 
-    def _validate_balance(self, amount):
+    def _check_sufficient_funds(self, amount):
         amount = Decimal(amount)
         if amount > self._balance:
-            raise InsufficientFundsError('Need more gold')
+            raise InsufficientFundsError('Insufficient funds')
     
     def _check_active(self):
         if self.status == AccountStatus.FROZEN:
