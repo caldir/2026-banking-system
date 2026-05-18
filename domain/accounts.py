@@ -124,3 +124,10 @@ class SavingsAccount(BankAccount):
             raise InsufficientFundsError('Cannot go below minimum balance')
         
         self._balance -= amount
+
+    def apply_monthly_interest(self):
+        if self.status == AccountStatus.FROZEN:
+            raise AccountFrozenError('Account frozen!')
+
+        interest = self._balance * self.monthly_interest_rate
+        self._balance += interest
