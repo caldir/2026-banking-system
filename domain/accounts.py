@@ -90,3 +90,27 @@ class BankAccount(AbstractAccount):
     @property
     def balance(self):
         return self._balance
+
+
+class SavingsAccount(BankAccount):
+
+    def __init__(
+        self,
+        owner_id,
+        balance=0,
+        currency=Currency.RUB,
+        account_id=None,
+        status=AccountStatus.ACTIVE,
+        min_balance=1000,
+        monthly_interest_rate="0.01",
+    ):
+        super().__init__(
+            owner_id=owner_id,
+            balance=balance, 
+            currency=currency, 
+            account_id=account_id, 
+            status=status
+        )
+
+        self.min_balance = Decimal(min_balance)
+        self.monthly_interest_rate = Decimal(monthly_interest_rate)
