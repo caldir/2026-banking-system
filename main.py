@@ -13,10 +13,14 @@ from exceptions.banking_exceptions import (
     InvalidOperationError,
 )
 from domain.clients import Client
+from services.bank import Bank
 
 print('Banking system started')
 
-client = Client(full_name="Ivan Petrov", age=30)
-client.add_account("acc_1")
+from services.bank import Bank
 
-print(client.get_client_info())
+bank = Bank("Mentor Bank")
+
+print(bank.name)
+print(bank.clients)
+print(bank.accounts)
