@@ -130,3 +130,10 @@ class SavingsAccount(BankAccount):
 
         interest = self._balance * self.monthly_interest_rate
         self._balance += interest
+
+    def get_account_info(self):
+        info = super().get_account_info()
+        info['min_balance'] = str(self.min_balance)
+        info['monthly_interest_rate'] = str(self.monthly_interest_rate)
+
+        return info

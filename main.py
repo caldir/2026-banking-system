@@ -12,12 +12,5 @@ from domain.accounts import SavingsAccount
 
 print('Banking system started')
 
-savings = SavingsAccount(
-    owner_id="client_2",
-    balance=10000,
-    monthly_interest_rate="0.01",
-    status=AccountStatus.FROZEN
-)
-
-savings.apply_monthly_interest()
-print(savings.balance)  # должно быть 10100.00 или 10100
+savings = SavingsAccount(owner_id="client_2", balance=10000)
+print(savings.get_account_info())
