@@ -6,9 +6,9 @@ class Client():
 
     def __init__(
         self,
-        client_id=None,
-        full_name,
         age,
+        full_name,
+        client_id=None,
         status=ClientStatus.ACTIVE,
         accounts=None,
         contacts=None,
@@ -19,7 +19,7 @@ class Client():
         self.age = age
         
         if client_id == None:
-            self.client_id = self._generate_account_id()
+            self.client_id = self._generate_client_id()
         else:
             self.client_id = client_id
 
@@ -35,3 +35,7 @@ class Client():
             self.contacts = {}
         else:
             self.contacts = contacts
+        self.failed_login_attempts = failed_login_attempts
+
+    def _generate_client_id(self):
+        return uuid.uuid4().hex[:10]

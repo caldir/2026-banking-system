@@ -12,6 +12,7 @@ from exceptions.banking_exceptions import (
     InsufficientFundsError,
     InvalidOperationError,
 )
+from domain.clients import Client
 
 print('Banking system started')
 
