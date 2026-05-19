@@ -190,7 +190,7 @@ class InvestmentAccount(BankAccount):
         expected_yearly_growth="0.08"
         ):
         super().__init__(
-                        owner_id=owner_id,
+            owner_id=owner_id,
             balance=balance, 
             currency=currency, 
             account_id=account_id, 
@@ -205,3 +205,14 @@ class InvestmentAccount(BankAccount):
         else:
             self.portfolio = portfolio
         self.expected_yearly_growth = Decimal(expected_yearly_growth)
+
+    def get_account_info(self):
+        info = super().get_account_info()
+        portfolio_as_str = {
+            asset: str(value)
+            for asset, value in self.portfolio.items()
+            }      
+        info['portfolio'] = portfolio_as_str
+        info['expected_yearly_growth'] = str(self.expected_yearly_growth)
+
+        return info
