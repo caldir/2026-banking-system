@@ -5,6 +5,7 @@ from exceptions.banking_exceptions import InvalidOperationError, AccountClosedEr
 
 import uuid
 
+
 class AbstractAccount(ABC):
     def __init__(
         self, 
@@ -38,6 +39,7 @@ class AbstractAccount(ABC):
     @abstractmethod
     def get_account_info(self):
         pass
+
 
 class BankAccount(AbstractAccount):
 
@@ -138,6 +140,7 @@ class SavingsAccount(BankAccount):
 
         return info
 
+
 class PremiumAccount(BankAccount):
 
     def __init__(
@@ -177,6 +180,7 @@ class PremiumAccount(BankAccount):
 
         return info
 
+
 class InvestmentAccount(BankAccount):
 
     def __init__(
@@ -211,7 +215,7 @@ class InvestmentAccount(BankAccount):
         portfolio_as_str = {
             asset: str(value)
             for asset, value in self.portfolio.items()
-            }      
+        }      
         info['portfolio'] = portfolio_as_str
         info['expected_yearly_growth'] = str(self.expected_yearly_growth)
 
@@ -222,5 +226,3 @@ class InvestmentAccount(BankAccount):
         projected_growth = self._balance * self.expected_yearly_growth
         
         return projected_growth
-    
-    
