@@ -1,6 +1,5 @@
 
 from domain.enums import AccountStatus, Currency 
-from exceptions.banking_exceptions import AccountFrozenError
 from domain.accounts import (
     AbstractAccount,
     BankAccount,
@@ -8,10 +7,25 @@ from domain.accounts import (
     PremiumAccount,
     InvestmentAccount
 )
-
 from exceptions.banking_exceptions import (
+    AccountFrozenError,
     InsufficientFundsError,
     InvalidOperationError,
 )
 
 print('Banking system started')
+
+client = Client(full_name="Ivan Petrov", age=30)
+
+print(client.client_id)
+print(client.full_name)
+print(client.age)
+print(client.status.value)
+print(client.accounts)
+print(client.contacts)
+print(client.failed_login_attempts)
+
+try:
+    Client(full_name="Young Client", age=16)
+except InvalidOperationError as error:
+    print("Client age error caught:", error)
