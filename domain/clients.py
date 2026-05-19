@@ -18,7 +18,7 @@ class Client():
             raise InvalidOperationError("Client must be at least 18 years old")
         self.age = age
         
-        if client_id == None:
+        if client_id is None:
             self.client_id = self._generate_client_id()
         else:
             self.client_id = client_id
@@ -39,3 +39,13 @@ class Client():
 
     def _generate_client_id(self):
         return uuid.uuid4().hex[:10]
+
+    def add_account(self, account_id):
+        if account_id in self.accounts:
+            raise InvalidOperationError('Already have an account')
+        self.accounts.append(account_id)
+
+    def remove_account(self, account_id):
+        if account_id not in self.accounts:
+            raise InvalidOperationError('Already not have an account')
+        self.accounts.remove(account_id)

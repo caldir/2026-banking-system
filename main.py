@@ -18,15 +18,19 @@ print('Banking system started')
 
 client = Client(full_name="Ivan Petrov", age=30)
 
-print(client.client_id)
-print(client.full_name)
-print(client.age)
-print(client.status.value)
-print(client.accounts)
-print(client.contacts)
-print(client.failed_login_attempts)
+client.add_account("acc_1")
+client.add_account("acc_2")
+print(client.accounts)  # ['acc_1', 'acc_2']
+
+client.remove_account("acc_1")
+print(client.accounts)  # ['acc_2']
 
 try:
-    Client(full_name="Young Client", age=16)
+    client.add_account("acc_2")
 except InvalidOperationError as error:
-    print("Client age error caught:", error)
+    print("Duplicate account caught:", error)
+
+try:
+    client.remove_account("missing_acc")
+except InvalidOperationError as error:
+    print("Missing account caught:", error)
