@@ -160,3 +160,12 @@ class PremiumAccount(BankAccount):
 
         self.overdraft_limit = Decimal(overdraft_limit)
         self.fixed_fee = Decimal(fixed_fee)
+
+    def withdraw(self, amount):
+        amount = Decimal(amount)
+        self._check_active()
+        self._validate_amount(amount)
+        total_amount = amount + self.fixed_fee
+        if self._balance + self.overdraft_limit < total_amount:
+            raise InsufficientFundsError('Not enouth money')
+        self._balance -= total_amount

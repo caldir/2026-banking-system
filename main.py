@@ -17,8 +17,10 @@ print('Banking system started')
 
 premium = PremiumAccount(owner_id="client_3", balance=1000)
 
-print(premium)
-print(premium.balance)
-print(premium.overdraft_limit)
-print(premium.fixed_fee)
-print(premium.get_account_info())
+premium.withdraw(3000)
+print(premium.balance)  # -2050
+
+try:
+    premium.withdraw(4000)
+except InsufficientFundsError as error:
+    print("PremiumAccount overdraft caught:", error)
