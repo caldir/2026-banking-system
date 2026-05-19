@@ -216,3 +216,11 @@ class InvestmentAccount(BankAccount):
         info['expected_yearly_growth'] = str(self.expected_yearly_growth)
 
         return info
+    
+    def project_yearly_growth(self):
+        self._check_active()
+        projected_growth = self._balance * self.expected_yearly_growth
+        
+        return projected_growth
+    
+    

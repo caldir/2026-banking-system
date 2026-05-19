@@ -16,5 +16,11 @@ from exceptions.banking_exceptions import (
 
 print('Banking system started')
 
-investment = InvestmentAccount(owner_id="client_4", balance=10000)
-print(investment.get_account_info())
+investment = InvestmentAccount(
+    owner_id="client_4",
+    balance=10000,
+    expected_yearly_growth="0.08",
+)
+
+print(investment.project_yearly_growth())  # 800.00 или 800
+print(investment.balance)                  # 10000
