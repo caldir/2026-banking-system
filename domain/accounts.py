@@ -167,5 +167,5 @@ class PremiumAccount(BankAccount):
         self._validate_amount(amount)
         total_amount = amount + self.fixed_fee
         if self._balance + self.overdraft_limit < total_amount:
-            raise InsufficientFundsError('Not enouth money')
+            raise InsufficientFundsError('Overdraft limit exceeded')
         self._balance -= total_amount
