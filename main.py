@@ -16,11 +16,4 @@ from exceptions.banking_exceptions import (
 print('Banking system started')
 
 premium = PremiumAccount(owner_id="client_3", balance=1000)
-
-premium.withdraw(3000)
-print(premium.balance)  # -2050
-
-try:
-    premium.withdraw(4000)
-except InsufficientFundsError as error:
-    print("PremiumAccount overdraft caught:", error)
+print(premium.get_account_info())

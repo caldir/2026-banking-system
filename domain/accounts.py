@@ -169,3 +169,10 @@ class PremiumAccount(BankAccount):
         if self._balance + self.overdraft_limit < total_amount:
             raise InsufficientFundsError('Overdraft limit exceeded')
         self._balance -= total_amount
+    
+    def get_account_info(self):
+        info = super().get_account_info()
+        info['overdraft_limit'] = str(self.overdraft_limit)
+        info['fixed_fee'] = str(self.fixed_fee)
+
+        return info
