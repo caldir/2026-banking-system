@@ -196,5 +196,12 @@ class InvestmentAccount(BankAccount):
             account_id=account_id, 
             status=status
         )
-        self.portfolio = portfolio
+        if portfolio is None:
+            self.portfolio = {
+                "stocks": Decimal("0"),
+                "bonds": Decimal("0"),
+                "etf": Decimal("0"),
+            }
+        else:
+            self.portfolio = portfolio
         self.expected_yearly_growth = Decimal(expected_yearly_growth)
