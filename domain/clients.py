@@ -42,10 +42,22 @@ class Client():
 
     def add_account(self, account_id):
         if account_id in self.accounts:
-            raise InvalidOperationError('Already have an account')
+            raise InvalidOperationError('Account already exists')
         self.accounts.append(account_id)
 
     def remove_account(self, account_id):
         if account_id not in self.accounts:
-            raise InvalidOperationError('Already not have an account')
+            raise InvalidOperationError('Account not found')
         self.accounts.remove(account_id)
+
+    def get_client_info(self):
+        info = {
+            "client_id": self.client_id,
+            "full_name": self.full_name,
+            "age": self.age,
+            "status": self.status.value,
+            "accounts": self.accounts,
+            "contacts": self.contacts,
+            "failed_login_attempts": self.failed_login_attempts,
+        }
+        return info
