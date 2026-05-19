@@ -5,7 +5,8 @@ from domain.accounts import (
     AbstractAccount,
     BankAccount,
     SavingsAccount,
-    PremiumAccount
+    PremiumAccount,
+    InvestmentAccount
 )
 
 from exceptions.banking_exceptions import (
@@ -15,5 +16,10 @@ from exceptions.banking_exceptions import (
 
 print('Banking system started')
 
-premium = PremiumAccount(owner_id="client_3", balance=1000)
-print(premium.get_account_info())
+investment = InvestmentAccount(owner_id="client_4", balance=10000)
+
+print(investment)
+print(investment.balance)
+print(investment.portfolio)
+print(investment.expected_yearly_growth)
+print(investment.get_account_info())

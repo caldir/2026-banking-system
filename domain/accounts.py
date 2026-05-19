@@ -176,3 +176,25 @@ class PremiumAccount(BankAccount):
         info['fixed_fee'] = str(self.fixed_fee)
 
         return info
+
+class InvestmentAccount(BankAccount):
+
+    def __init__(
+        self,
+        owner_id,
+        balance=0,
+        currency=Currency.RUB,
+        account_id=None,
+        status=AccountStatus.ACTIVE,
+        portfolio=None,
+        expected_yearly_growth="0.08"
+        ):
+        super().__init__(
+                        owner_id=owner_id,
+            balance=balance, 
+            currency=currency, 
+            account_id=account_id, 
+            status=status
+        )
+        self.portfolio = portfolio
+        self.expected_yearly_growth = Decimal(expected_yearly_growth)
