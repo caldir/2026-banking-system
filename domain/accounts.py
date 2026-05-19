@@ -137,3 +137,26 @@ class SavingsAccount(BankAccount):
         info['monthly_interest_rate'] = str(self.monthly_interest_rate)
 
         return info
+
+class PremiumAccount(BankAccount):
+
+    def __init__(
+        self,
+        owner_id,
+        balance=0,
+        currency=Currency.RUB,
+        account_id=None,
+        status=AccountStatus.ACTIVE,
+        overdraft_limit=5000,
+        fixed_fee=50
+        ):
+        super().__init__(
+            owner_id=owner_id,
+            balance=balance, 
+            currency=currency, 
+            account_id=account_id, 
+            status=status
+        )
+
+        self.overdraft_limit = overdraft_limit
+        self.fixed_fee = fixed_fee
