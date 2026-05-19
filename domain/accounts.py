@@ -158,5 +158,5 @@ class PremiumAccount(BankAccount):
             status=status
         )
 
-        self.overdraft_limit = overdraft_limit
-        self.fixed_fee = fixed_fee
+        self.overdraft_limit = Decimal(overdraft_limit)
+        self.fixed_fee = Decimal(fixed_fee)
