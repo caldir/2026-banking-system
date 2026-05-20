@@ -28,6 +28,6 @@ class Bank():
             raise InvalidOperationError('Client not found')
         if account.account_id in self.accounts:
             raise InvalidOperationError('Account already exists')
-        self.accounts[account.account_id] = account.account_id
+        self.accounts[account.account_id] = account
         self.clients[client_id].add_account(account.account_id)
         
