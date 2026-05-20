@@ -1,4 +1,5 @@
 from exceptions.banking_exceptions import InvalidOperationError
+from domain.enums import AccountStatus
 
 class Bank():
 
@@ -31,3 +32,10 @@ class Bank():
         self.accounts[account.account_id] = account
         self.clients[client_id].add_account(account.account_id)
         
+    def close_account(self, account_id):
+        if account_id in self.accounts:
+            raise InvalidOperationError('Account not found')
+        account = self.accounts[account_id]
+        account.status = AccountStatus.CLOSED
+        cliend_id = account.owner_id
+        self.clients[cliend_id].remove_account(account_id)
