@@ -23,11 +23,11 @@ class Bank():
             raise InvalidOperationError('Client already exists')
         self.clients[client.client_id] = client
 
-    def open_account(self,client,account):
-        if client.client_id not in self.clients:
+    def open_account(self,client_id,account):
+        if  client_id not in self.clients:
             raise InvalidOperationError('Client not found')
         if account.account_id in self.accounts:
             raise InvalidOperationError('Account already exists')
-        self.accounts[account_id] = account
+        self.accounts[account.account_id] = account.account_id
         self.clients[client_id].add_account(account.account_id)
         
