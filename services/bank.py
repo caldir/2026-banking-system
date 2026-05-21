@@ -33,7 +33,7 @@ class Bank():
         self.clients[client_id].add_account(account.account_id)
         
     def close_account(self, account_id):
-        if account_id in self.accounts:
+        if account_id not in self.accounts:
             raise InvalidOperationError('Account not found')
         account = self.accounts[account_id]
         account.status = AccountStatus.CLOSED
