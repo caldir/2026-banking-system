@@ -18,17 +18,14 @@ from services.bank import Bank
 print('Banking system started')
 
 bank = Bank("Mentor Bank")
+
 client = Client(full_name="Ivan Petrov", age=30)
-account = BankAccount(owner_id=client.client_id, balance=1000)
-
 bank.add_client(client)
-bank.open_account(client.client_id, account)
 
-print(bank.accounts)
-print(client.accounts)
+account_1 = BankAccount(owner_id=client.client_id, balance=1000)
+account_2 = SavingsAccount(owner_id=client.client_id, balance=5000)
 
-bank.freeze_account(account.account_id)
-print(account.status.value)  # frozen
+bank.open_account(client.client_id, account_1)
+bank.open_account(client.client_id, account_2)
 
-bank.unfreeze_account(account.account_id)
-print(account.status.value)  # active
+print(bank.get_total_balance())  # 6000
