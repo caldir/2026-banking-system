@@ -27,7 +27,8 @@ bank.open_account(client.client_id, account)
 print(bank.accounts)
 print(client.accounts)
 
-bank.close_account(account.account_id)
+bank.freeze_account(account.account_id)
+print(account.status.value)  # frozen
 
-print(account.status.value)   # closed
-print(client.accounts)        # []
+bank.unfreeze_account(account.account_id)
+print(account.status.value)  # active

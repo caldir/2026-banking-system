@@ -37,5 +37,17 @@ class Bank():
             raise InvalidOperationError('Account not found')
         account = self.accounts[account_id]
         account.status = AccountStatus.CLOSED
-        cliend_id = account.owner_id
-        self.clients[cliend_id].remove_account(account_id)
+        client_id = account.owner_id
+        self.clients[client_id].remove_account(account_id)
+
+    def freeze_account(self, account_id):
+        if account_id not in self.accounts:
+            raise InvalidOperationError('Account not found')
+        account = self.accounts[account_id]
+        account.status = AccountStatus.FROZEN
+
+    def unfreeze_account(self, account_id):
+        if account_id not in self.accounts:
+            raise InvalidOperationError('Account not found')
+        account = self.accounts[account_id]
+        account.status = AccountStatus.ACTIVE
