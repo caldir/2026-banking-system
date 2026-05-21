@@ -1,5 +1,6 @@
 from exceptions.banking_exceptions import InvalidOperationError
 from domain.enums import AccountStatus
+from decimal import Decimal
 
 class Bank():
 
@@ -24,8 +25,8 @@ class Bank():
             raise InvalidOperationError('Client already exists')
         self.clients[client.client_id] = client
 
-    def open_account(self,client_id,account):
-        if  client_id not in self.clients:
+    def open_account(self, client_id, account):
+        if client_id not in self.clients:
             raise InvalidOperationError('Client not found')
         if account.account_id in self.accounts:
             raise InvalidOperationError('Account already exists')
@@ -51,3 +52,11 @@ class Bank():
             raise InvalidOperationError('Account not found')
         account = self.accounts[account_id]
         account.status = AccountStatus.ACTIVE
+
+    def get_total_balance(self):
+        total = Decimal("0")
+
+        for account in self.accounts.values():
+            total += account.balance
+
+        return total
