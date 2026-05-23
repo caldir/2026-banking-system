@@ -17,15 +17,24 @@ from services.bank import Bank
 
 print('Banking system started')
 
+
 bank = Bank("Mentor Bank")
 
-client = Client(full_name="Ivan Petrov", age=30)
-bank.add_client(client)
+client_1 = Client(full_name="Ivan Petrov", age=30)
+client_2 = Client(full_name="Anna Smirnova", age=28)
 
-account_1 = BankAccount(owner_id=client.client_id, balance=1000)
-account_2 = SavingsAccount(owner_id=client.client_id, balance=5000)
+bank.add_client(client_1)
+bank.add_client(client_2)
 
-bank.open_account(client.client_id, account_1)
-bank.open_account(client.client_id, account_2)
+account_1 = BankAccount(owner_id=client_1.client_id, balance=1000)
+account_2 = SavingsAccount(owner_id=client_1.client_id, balance=5000)
+account_3 = PremiumAccount(owner_id=client_2.client_id, balance=10000)
 
-print(bank.get_total_balance())  # 6000
+bank.open_account(client_1.client_id, account_1)
+bank.open_account(client_1.client_id, account_2)
+bank.open_account(client_2.client_id, account_3)
+
+ranking = bank.get_clients_ranking()
+
+for item in ranking:
+    print(item)

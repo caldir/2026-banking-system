@@ -14,6 +14,7 @@ class Client():
         contacts=None,
         failed_login_attempts=0
     ):
+        age = int(age) #надо?
         if age < 18:
             raise InvalidOperationError("Client must be at least 18 years old")
         self.age = age

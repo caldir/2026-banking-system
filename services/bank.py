@@ -60,3 +60,27 @@ class Bank():
             total += account.balance
 
         return total
+
+    def get_clients_ranking(self):
+        ranking = []
+        for client in self.clients.values():
+            client_total = Decimal("0")
+
+            for account_id in client.accounts:
+                account = self.accounts[account_id]
+                client_total += account.balance
+
+            ranking.append(
+                {
+                    "client_id": client.client_id,
+                    "full_name": client.full_name,
+                    "total_balance": str(client_total),
+                }
+            )
+
+        ranking.sort(
+            key=lambda item: Decimal(item["total_balance"]),
+            reverse=True,
+        )
+
+        return ranking
